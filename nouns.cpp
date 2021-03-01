@@ -924,7 +924,7 @@ Nouns::Nouns() : BaseAction()
     wList.append(WordMap("life", "lives", "жизнь", "жизни"));
     wList.append(WordMap("knife", "knives", "нож", "ножи"));
     wList.append(WordMap("shelf", "shelves", "полка", "полки"));
-    wList.append(WordMap("a chief", "chiefs", "начальник", "начальники"));
+    wList.append(WordMap("chief", "chiefs", "начальник", "начальники"));
     wList.append(WordMap("page", "pages", "страница", "страницы"));
     wList.append(WordMap("bridge", "bridges", "мост", "мосты"));
     wList.append(WordMap("orange", "oranges", "апельсин", "апельсины"));
