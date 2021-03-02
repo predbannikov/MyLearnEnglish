@@ -16,6 +16,7 @@ class Nouns : public BaseAction
         QString word1;
         QString word2;
     };
+
     struct WordMap {
         WordMap(QString arg1, QString arg2, QString arg3, QString arg4) {
             word1 = arg1;
@@ -28,6 +29,8 @@ class Nouns : public BaseAction
         QString word3;
         QString word4;
     };
+
+    typedef  WordMap IrregularVerbs;
 
     struct ExpressionPluar : public Expression{
         SECTION ePlural;
