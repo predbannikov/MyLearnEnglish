@@ -4,6 +4,7 @@
 #include <QObject>
 #include <global.h>
 #include <QList>
+#include <windows.h>
 
 struct Expression {
     QString wordResponse;
@@ -12,15 +13,16 @@ struct Expression {
         return wordResponse.simplified() == wordRight.simplified();
     }
     virtual void set(QString aRightStr) {
-        std::string response;
-        std::cin >> response;
-        wordResponse = QString::fromStdString(response).toLower().simplified();
+        std::wstring response;
+        std::wcin >> response;
+        wordResponse = QString::fromStdWString(response).toLower().simplified();
         wordRight = aRightStr.simplified();
     }
     virtual void setLine(QString aRightStr) {
-        std::string response;
-        std::getline(std::cin, response);
-        wordResponse = QString::fromStdString(response).toLower().simplified();
+        std::wstring response;
+        std::getline(std::wcin, response);
+        wordResponse = QString::fromStdWString(response).toLower().simplified();
+//        wordResponse = QString::fromStdString(response).toLower().simplified();
         wordRight = aRightStr.simplified();
     }
 };

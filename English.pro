@@ -10,8 +10,10 @@ CONFIG -= app_bundle
 SOURCES += \
         baseaction.cpp \
         engine.cpp \
+        irregulartake.cpp \
         main.cpp \
         nouns.cpp \
+        questions.cpp \
         trainingverb.cpp
 
 # Default rules for deployment.
@@ -23,5 +25,7 @@ HEADERS += \
     baseaction.h \
     engine.h \
     global.h \
+    irregulartake.h \
     nouns.h \
+    questions.h \
     trainingverb.h

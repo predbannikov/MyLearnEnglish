@@ -1,7 +1,9 @@
 #include "engine.h"
 
 #include "trainingverb.h"
+#include "irregulartake.h"
 #include "nouns.h"
+#include "questions.h"
 
 #define MAX_QUEST   1
 #define START_QUEST 0
@@ -16,10 +18,13 @@ void Engine::begin()
 {
     int choice = 0;
     QVector<int> vecChoice;
+    QVector<int> argChoice;
     while(!vecChoice.size()) {
         qDebug() << "Выбирите какие тесты вы хотите включить";
         qDebug() << "0001 схемы предложений с временами глаголов";
-        qDebug() << "0010 слова для повторения";
+        qDebug() << "0010 слова";
+        qDebug() << "0011 неправельные глаголы";
+        qDebug() << "1111 включеть все тесты";
         std::cin >> choice;
 
         if(choice == 1) {
@@ -29,9 +34,17 @@ void Engine::begin()
             qDebug() << "слова";
             vecChoice.append(2);
         } else if(choice == 3) {
-            qDebug() << "времена + слова";
+            qDebug() << "неправельные глаголы";
+            vecChoice.append(3);
+        } else if(choice == 4) {
+            qDebug() << "вопросы";
+            vecChoice.append(4);
+        } else if(choice == 16) {
+            qDebug() << "времена + слова + неправельные глаголы + вопросы";
             vecChoice.append(1);
             vecChoice.append(2);
+            vecChoice.append(3);
+            vecChoice.append(4);
         }
     }
 
@@ -58,16 +71,22 @@ void Engine::begin()
             qDebug() <<  "\nМножественное число существительных ";
             baseAction = new Nouns;
             break;
+        case 3:
+            baseAction = new IrregularTake;
+            break;
+        case 4:
+            baseAction = new Questions;
+            break;
         }
         baseAction->init();
         baseAction->begin();
-        qDebug() << baseAction->getString() << " | " << baseAction->getStringRight();
         if(baseAction->isRight()) {
             right.right++;
             qDebug() << "Правильно!";
         } else {
             right.err++;
             qDebug() << "Не правильно";
+            qDebug() <<"ответ: " << baseAction->getStringRight();
         }
 
 
