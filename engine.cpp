@@ -8,6 +8,26 @@
 #define MAX_QUEST   1
 #define START_QUEST 0
 
+enum ConsoleColor {
+Black = 0,
+Blue = 1,
+Green = 2,
+Cyan = 3,
+Red = 4,
+Magenta = 5,
+Brown = 6,
+LightGray = 7,
+DarkGray = 8,
+LightBlue = 9,
+LightGreen = 10,
+LightCyan = 11,
+LightRed = 12,
+LightMagenta = 13,
+Yellow = 14,
+White = 15
+};
+
+
 Engine::Engine(QObject *object) : QObject(object)
 {
     std::srand(time(nullptr));
@@ -56,6 +76,10 @@ void Engine::begin()
         int right = 0;
         int num = 0;
     } right;
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+
     for (int i = 0; i < 10000; i++) {
         right.num++;
         saveTime = QDateTime::currentDateTime();
@@ -82,11 +106,17 @@ void Engine::begin()
         baseAction->begin();
         if(baseAction->isRight()) {
             right.right++;
+
+            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
             qDebug() << "Правильно!";
+            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+
         } else {
             right.err++;
+            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
             qDebug() << "Не правильно";
             qDebug() <<"ответ: " << baseAction->getStringRight();
+            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
         }
 
 
@@ -102,3 +132,16 @@ void Engine::begin()
         qDebug() << "";
     }
 }
+
+/*
+
+0 = Черный 8 = Серый
+1 = Синий 9 = Светло-синий
+2 = Зеленый A = Светло-зеленый
+3 = Голубой B = Светло-голубой
+4 = Красный C = Светло-красный
+5 = Лиловый D = Светло-лиловый
+6 = Желтый E = Светло-желтый
+7 = Белый F = Ярко-белый
+
+*/

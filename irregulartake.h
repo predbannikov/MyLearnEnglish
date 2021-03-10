@@ -6,7 +6,7 @@
 
 class IrregularTake: public BaseAction
 {
-    enum SECTION {SECTION_FORM1, SECTION_FORM2, SECTION_FORM3, SECTION_FORM4,
+    enum SECTION {SECTION_FORM1, SECTION_FORM2, SECTION_FORM3, SECTION_FORM4, SECTION_TRANSLATE,
                   SECTION_COUNT } section;
     int index = 0;
 

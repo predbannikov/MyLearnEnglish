@@ -20,9 +20,11 @@ IrregularTake::IrregularTake()
     irrList.append(WordFours("bring", "brought", "brought", "приносить"));
     irrList.append(WordFours("build", "built", "built", "строить"));
     irrList.append(WordFours("buy", "bought", "bought", "покупать"));
+    irrList.append(WordFours("can", "could", "could", "мочь физически"));
     irrList.append(WordFours("catch", "caught", "caught", "ловить"));
     irrList.append(WordFours("choose", "chose", "chosen", "выбирать"));
     irrList.append(WordFours("cling", "clung", "clung", "цепляться"));
+    irrList.append(WordFours("clothe", "clothed", "clothed", "одеть, одевать"));
     irrList.append(WordFours("come", "came", "come", "приходить"));
     irrList.append(WordFours("cost", "cost", "cost", "стоить"));
     irrList.append(WordFours("cut", "cut", "cut", "резать"));
@@ -32,6 +34,7 @@ IrregularTake::IrregularTake()
     irrList.append(WordFours("draw", "drew", "drawn", "рисовать, тянуть"));
     irrList.append(WordFours("drink", "drank", "drunk", "пить"));
     irrList.append(WordFours("drive", "drove", "driven", "водить автомобиль"));
+    irrList.append(WordFours("dive", "dove", "dived", "нырять"));
     irrList.append(WordFours("eat", "ate", "eaten", "кушать"));
     irrList.append(WordFours("fall", "fell", "fallen", "падать"));
     irrList.append(WordFours("feed", "fed", "fed", "кормить"));
@@ -84,7 +87,7 @@ IrregularTake::IrregularTake()
     irrList.append(WordFours("set", "set", "set", "устанавливать"));
     irrList.append(WordFours("shake", "shook", "shaken", "трясти"));
     irrList.append(WordFours("shine", "shone", "shone", "светить, сиять"));
-    irrList.append(WordFours("shoot", "shot", "shot", "стрелять"));
+    irrList.append(WordFours("shoot", "shot", "shot", "стрелять, снимать"));
     irrList.append(WordFours("show", "showed", "shown", "показывать"));
     irrList.append(WordFours("shrink", "shrank", "shrunk", "сжиматься"));
     irrList.append(WordFours("shut", "shut", "shut", "закрывать, затворять"));
@@ -134,7 +137,7 @@ IrregularTake::IrregularTake()
 void IrregularTake::begin()
 {
 //    SECTION quest = SECTION(rand()%SECTION_COUNT);
-    SECTION quest = SECTION(rand()%1 + 1);
+    SECTION quest = SECTION(rand()%1 + 4);
     QString str;
 
     switch (quest) {
@@ -161,6 +164,24 @@ void IrregularTake::begin()
         index = rand()%irrList.size();
         qDebug() << irrList[index].word4;
         expression->setLine(QString("%1").arg(irrList[index].word3));
+        break;
+    case SECTION_TRANSLATE:
+        index = rand()%irrList.size();
+        int iCaseWord = rand()%3;
+        switch (iCaseWord) {
+        case 0:
+            qDebug() <<  "\Перевести 1-ю форму глагола: " << irrList[index].word1;
+            break;
+        case 1:
+            qDebug() <<  "\Перевести 2-ю форму глагола: " << irrList[index].word2;
+            break;
+        case 2:
+            qDebug() <<  "\Перевести 3-ю форму глагола: " << irrList[index].word3;
+            break;
+        }
+        expression->setLine(QString("%1").arg(irrList[index].word4));
+        qDebug() << irrList[index].word1 + " " + irrList[index].word2 + " " + irrList[index].word3;
+
         break;
     }
 

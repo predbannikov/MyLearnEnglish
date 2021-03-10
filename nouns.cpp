@@ -884,9 +884,9 @@ Nouns::Nouns() : BaseAction()
     List1.append(WordPair("narrow", "узкий, сужаться	 	 "));
 //    List1.append(WordPair("O:"));
     List1.append(WordPair("old", "старый"));
-    List1.append(WordPair("opposite", "напротив, противоположный	 "));
+    List1.append(WordPair("opposite", "напротив, противоположный"));
 //    List1.append(WordPair("P:"));
-    List1.append(WordPair("public", "публичный	 	 "));
+    List1.append(WordPair("public", "публичный	"));
 //    List1.append(WordPair("R:"));
     List1.append(WordPair("rough", "грубый	 	 "));
 //    List1.append(WordPair("S:"));
@@ -902,7 +902,7 @@ Nouns::Nouns() : BaseAction()
     List1.append(WordPair("special", "специальный"));
     List1.append(WordPair("strange", "странный"));
 //    List1.append(WordPair("T:"));
-    List1.append(WordPair("thin", "худой, тонкий, жидкий	 	 "));
+    List1.append(WordPair("thin", "худой, тонкий, жидкий"));
 //    List1.append(WordPair("W:"));
     List1.append(WordPair("white", "белый "));
     List1.append(WordPair("wrong", "неправильный, несправедливость"));
