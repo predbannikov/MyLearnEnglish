@@ -32,7 +32,27 @@ QString BaseAction::getString()
 
 bool BaseAction::isRight()
 {
-    return getString().simplified() == getStringRight().simplified();
+    QString str1 = getString();
+    QString str2 = getStringRight();
+    QStringList list1 = str1.split(",");
+    QStringList list2 = str2.split(",");
+    for(int i = 0; i < list2.size(); i++) {
+        list2[i] = list2[i].trimmed();
+    }
+    bool done;
+    for(int a = 0; a < list1.size(); a++) {
+        done = false;
+//        for(int b = 0; b < list2.size(); b++) {
+            if(list2.contains(list1[a].trimmed()))
+                done = true;
+//        }
+
+        if(!done)
+            break;
+    }
+//    qDebug() << "stop";
+    return done;
+//    return getString().simplified() == getStringRight().simplified();
 }
 
 QString BaseAction::readString()

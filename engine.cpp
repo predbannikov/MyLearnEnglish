@@ -39,6 +39,7 @@ void Engine::begin()
     int choice = 0;
     QVector<int> vecChoice;
     QVector<int> argChoice;
+
     while(!vecChoice.size()) {
         qDebug() << "Выбирите какие тесты вы хотите включить";
         qDebug() << "0001 схемы предложений с временами глаголов";

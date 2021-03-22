@@ -46,8 +46,8 @@ Questions::Questions()
 
     questList.append(TwoWords("old", "старый"));
     questList.append(TwoWords("older", "старше"));
-    questList.append(TwoWords("the oldest", "самый старый"));
-    questList.append(TwoWords("more", "более"));
+    questList.append(TwoWords("the oldest", "самый старый, старейший"));
+    questList.append(TwoWords("more", "больше"));
     questList.append(TwoWords("most likely", "скорее всего"));
 
 
@@ -55,6 +55,10 @@ Questions::Questions()
 
 void Questions::begin()
 {
+
+//    expression->setLine("там, туда");
+//    return;
+
     SECTION quest = SECTION(rand()%SECTION_COUNT);
     QString str;
     int index = 0;
