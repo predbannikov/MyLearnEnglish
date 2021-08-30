@@ -6,7 +6,7 @@
 #include <ctime>
 #include <QTimer>
 #include "engine.h"
-#include "Windows.h"
+//#include "Windows.h"
 
 using namespace std;
 

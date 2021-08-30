@@ -4,7 +4,7 @@
 #include <QObject>
 #include <global.h>
 #include <QList>
-#include <windows.h>
+//#include <windows.h>
 
 struct Expression {
     QString wordResponse;
