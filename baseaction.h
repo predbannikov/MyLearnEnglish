@@ -4,7 +4,12 @@
 #include <QObject>
 #include <global.h>
 #include <QList>
-//#include <windows.h>
+#ifdef   _WIN32
+#include "Windows.h"
+#elif   __linux__
+#include "colors.h"
+#endif
+
 
 struct Expression {
     QString wordResponse;

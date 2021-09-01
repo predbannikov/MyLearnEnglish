@@ -78,7 +78,11 @@ void Engine::begin()
         int num = 0;
     } right;
 
+#ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+#elif  __linux__
+
+#endif
 
 
     for (int i = 0; i < 10000; i++) {
@@ -107,19 +111,34 @@ void Engine::begin()
         baseAction->begin();
         if(baseAction->isRight()) {
             right.right++;
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
+#elif  __linux__
 
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
+#endif
             qDebug() << "Правильно!";
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+#elif  __linux__
+
+#endif
+
 
         } else {
             right.err++;
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
+#elif  __linux__
+
+#endif
             qDebug() << "Не правильно";
             qDebug() <<"ответ: " << baseAction->getStringRight();
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
-        }
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+#elif  __linux__
 
+#endif
+        }
 
 
         qint64 dif = saveTime.msecsTo(QDateTime::currentDateTime());
