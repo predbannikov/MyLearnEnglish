@@ -4,7 +4,12 @@
 #include <QObject>
 #include <global.h>
 #include <QList>
-//#include <windows.h>
+#ifdef   _WIN32
+#include "Windows.h"
+#elif   __linux__
+#include "colors.h"
+#endif
+
 
 struct Expression {
     QString wordResponse;
@@ -22,8 +27,14 @@ struct Expression {
         std::wstring response;
         std::getline(std::wcin, response);
         wordResponse = QString::fromStdWString(response).toLower().simplified();
+//        wordResponse.remove(' ');
+//        wordResponse.remove('-');
+
 //        wordResponse = QString::fromStdString(response).toLower().simplified();
         wordRight = aRightStr.simplified();
+//        wordRight.remove(' ');
+//        wordRight.remove('-');
+
     }
 };
 
@@ -31,8 +42,8 @@ class BaseAction
 {
 public:
     explicit BaseAction();
-    ~BaseAction();
-    virtual void begin() = 0;
+    virtual ~BaseAction();
+    virtual void begin(int number = -1) = 0;
     virtual QString getStringRight();
     virtual QString getString();
     void init();

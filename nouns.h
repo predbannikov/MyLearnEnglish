@@ -6,7 +6,7 @@
 
 class Nouns : public BaseAction
 {
-    enum SECTION {SECTION_PLURAL } section;
+    enum SECTION {SECTION_PLURAL , SECTION_WORDS} section;
 
     struct WordPair {
         WordPair(QString arg1, QString arg2) {
@@ -18,7 +18,7 @@ class Nouns : public BaseAction
     };
 
     struct WordMap {
-        WordMap(QString arg1, QString arg2, QString arg3, QString arg4) {
+        WordMap(QString arg1, QString arg2, QString arg3 = "", QString arg4 = "") {
             word1 = arg1;
             word2 = arg2;
             word3 = arg3;
@@ -39,7 +39,8 @@ class Nouns : public BaseAction
 public:
     Nouns();
     QList<WordMap> wList;
-    virtual void begin() override;
+    std::vector<WordPair> list1;
+    virtual void begin(int number = -1) override;
 
 signals:
 

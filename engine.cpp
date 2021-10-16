@@ -1,4 +1,5 @@
 #include "engine.h"
+#include <sstream>
 
 #include "trainingverb.h"
 #include "irregulartake.h"
@@ -9,22 +10,22 @@
 #define START_QUEST 0
 
 enum ConsoleColor {
-Black = 0,
-Blue = 1,
-Green = 2,
-Cyan = 3,
-Red = 4,
-Magenta = 5,
-Brown = 6,
-LightGray = 7,
-DarkGray = 8,
-LightBlue = 9,
-LightGreen = 10,
-LightCyan = 11,
-LightRed = 12,
-LightMagenta = 13,
-Yellow = 14,
-White = 15
+    Black = 0,
+    Blue = 1,
+    Green = 2,
+    Cyan = 3,
+    Red = 4,
+    Magenta = 5,
+    Brown = 6,
+    LightGray = 7,
+    DarkGray = 8,
+    LightBlue = 9,
+    LightGreen = 10,
+    LightCyan = 11,
+    LightRed = 12,
+    LightMagenta = 13,
+    Yellow = 14,
+    White = 15
 };
 
 
@@ -36,9 +37,11 @@ Engine::Engine(QObject *object) : QObject(object)
 
 void Engine::begin()
 {
-    int choice = 0;
+    int choice;
+    int arg2 = -1;
+    std::string s;
     QVector<int> vecChoice;
-    QVector<int> argChoice;
+//    QVector<int> argChoice;
 
     while(!vecChoice.size()) {
         qDebug() << "Выбирите какие тесты вы хотите включить";
@@ -46,7 +49,14 @@ void Engine::begin()
         qDebug() << "0010 слова";
         qDebug() << "0011 неправельные глаголы";
         qDebug() << "1111 включеть все тесты";
-        std::cin >> choice;
+        std::getline(std::cin, s);
+
+        std::istringstream is(s);
+
+        is >> choice;
+        if(is) {
+            is >> arg2;
+        }
 
         if(choice == 1) {
             qDebug() << "времена";
@@ -78,7 +88,11 @@ void Engine::begin()
         int num = 0;
     } right;
 
+#ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+#elif  __linux__
+
+#endif
 
 
     for (int i = 0; i < 10000; i++) {
@@ -93,7 +107,6 @@ void Engine::begin()
             baseAction = new TrainingVerb;
             break;
         case 2:
-            qDebug() <<  "\nМножественное число существительных ";
             baseAction = new Nouns;
             break;
         case 3:
@@ -104,22 +117,37 @@ void Engine::begin()
             break;
         }
         baseAction->init();
-        baseAction->begin();
+        baseAction->begin(arg2);
         if(baseAction->isRight()) {
             right.right++;
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
+#elif  __linux__
 
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
+#endif
             qDebug() << "Правильно!";
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+#elif  __linux__
+
+#endif
+
 
         } else {
             right.err++;
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
+#elif  __linux__
+
+#endif
             qDebug() << "Не правильно";
             qDebug() <<"ответ: " << baseAction->getStringRight();
-            SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
-        }
+#ifdef _WIN32
+    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+#elif  __linux__
 
+#endif
+        }
 
 
         qint64 dif = saveTime.msecsTo(QDateTime::currentDateTime());
@@ -131,6 +159,7 @@ void Engine::begin()
                             .arg(QDateTime::fromMSecsSinceEpoch(dif).toString("mm:ss"))
                             .arg(QDateTime::fromMSecsSinceEpoch(delyaTime).toString("mm:ss"));
         qDebug() << "";
+        delete baseAction;
     }
 }
 

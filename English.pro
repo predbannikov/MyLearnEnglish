@@ -23,6 +23,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     baseaction.h \
+    colors.h \
     engine.h \
     global.h \
     irregulartake.h \

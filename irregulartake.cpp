@@ -134,7 +134,7 @@ IrregularTake::IrregularTake()
 //}
 
 
-void IrregularTake::begin()
+void IrregularTake::begin(int number)
 {
 //    SECTION quest = SECTION(rand()%SECTION_COUNT);
     SECTION quest = SECTION(rand()%1 + 4);

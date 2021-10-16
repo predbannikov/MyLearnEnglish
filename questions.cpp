@@ -53,7 +53,7 @@ Questions::Questions()
 
 }
 
-void Questions::begin()
+void Questions::begin(int number)
 {
 
 //    expression->setLine("там, туда");

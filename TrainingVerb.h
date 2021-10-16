@@ -34,7 +34,7 @@ struct ExpressionWordAddPronouns : public ExpressionWord{
 class TrainingVerb : public BaseAction{
 public:
     TrainingVerb();
-    virtual void begin() override;
+    virtual void begin(int number = -1) override;
     virtual QString getString() override;
     virtual QString getStringRight() override;
 

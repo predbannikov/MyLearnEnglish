@@ -12,7 +12,7 @@ class Questions: public BaseAction
 
 public:
     Questions();
-    virtual void begin() override;
+    virtual void begin(int number = -1) override;
 
 };
 

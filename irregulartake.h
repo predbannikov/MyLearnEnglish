@@ -15,7 +15,7 @@ public:
     IrregularTake();
     QList<WordFours> irrList;
 //    virtual bool isRight() override;
-    virtual void begin() override;
+    virtual void begin(int number = -1) override;
 };
 
 #endif // IRREGULARTAKE_H

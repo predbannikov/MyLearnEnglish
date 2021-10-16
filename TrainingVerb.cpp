@@ -7,7 +7,7 @@ TrainingVerb::TrainingVerb()
 
 }
 
-void TrainingVerb::begin()
+void TrainingVerb::begin(int number)
 {
 
     clear();
