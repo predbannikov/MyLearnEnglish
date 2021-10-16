@@ -33,7 +33,9 @@ QString BaseAction::getString()
 bool BaseAction::isRight()
 {
     QString str1 = getString();
+    str1.remove('-');   //  new
     QString str2 = getStringRight();
+    str2.remove('-');   //  new
     QStringList list1 = str1.split(",");
     QStringList list2 = str2.split(",");
     for(int i = 0; i < list2.size(); i++) {

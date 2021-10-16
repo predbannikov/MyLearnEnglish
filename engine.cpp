@@ -41,7 +41,6 @@ void Engine::begin()
     int arg2 = -1;
     std::string s;
     QVector<int> vecChoice;
-//    QVector<int> argChoice;
 
     while(!vecChoice.size()) {
         qDebug() << "Выбирите какие тесты вы хотите включить";
@@ -54,9 +53,9 @@ void Engine::begin()
         std::istringstream is(s);
 
         is >> choice;
-        if(is) {
+        if(is)
             is >> arg2;
-        }
+
 
         if(choice == 1) {
             qDebug() << "времена";
@@ -121,13 +120,13 @@ void Engine::begin()
         if(baseAction->isRight()) {
             right.right++;
 #ifdef _WIN32
-    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
+        SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Green));
 #elif  __linux__
 
 #endif
-            qDebug() << "Правильно!";
+        qDebug() << "Правильно!";
 #ifdef _WIN32
-    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
+        SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
 #elif  __linux__
 
 #endif
@@ -136,12 +135,12 @@ void Engine::begin()
         } else {
             right.err++;
 #ifdef _WIN32
-    SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
+        SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | Red));
 #elif  __linux__
 
 #endif
-            qDebug() << "Не правильно";
-            qDebug() <<"ответ: " << baseAction->getStringRight();
+        qDebug() << "Не правильно";
+        qDebug() <<"ответ: " << baseAction->getStringRight();
 #ifdef _WIN32
     SetConsoleTextAttribute(hConsole, (WORD) ((Black << 4) | White));
 #elif  __linux__
