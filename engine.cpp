@@ -78,8 +78,8 @@ void Engine::begin()
         }
     }
 
-    std::string vnull;
-    std::getline(std::cin, vnull);
+//    std::string vnull;
+//    std::getline(std::cin, vnull);
 
     struct {
         int err = 0;
